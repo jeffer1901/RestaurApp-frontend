@@ -1,0 +1,87 @@
+<div class="productos-container">
+  <div class="overlay"></div>
+
+  <div class="content">
+    <h1>👤 Gestión de Usuarios</h1>
+    <p>Administra los usuarios del restaurante: crea, edita o elimina cuentas.</p>
+
+    <!-- 🔍 Búsqueda -->
+    <div class="busqueda">
+      <input type="text" [(ngModel)]="filtro" placeholder="Buscar por nombre, apellido o rol..." />
+      <input type="number" [(ngModel)]="idBusqueda" placeholder="Buscar por ID" />
+      <button (click)="buscarPorId()">Buscar</button>
+    </div>
+
+    <!-- 📋 Tabla de Usuarios -->
+    <div class="tabla-container">
+      <table>
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Correo</th>
+          <th>Rol</th>
+          <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let usuario of usuariosFiltrados">
+          <td>{{ usuario.id }}</td>
+          <td>{{ usuario.nombre }}</td>
+          <td>{{ usuario.apellido }}</td>
+          <td>{{ usuario.correo }}</td>
+          <td>{{ usuario.rol }}</td>
+          <td class="acciones-fila">
+            <button class="editar" (click)="abrirModal(usuario)">✏️ Editar</button>
+            <button class="eliminar" (click)="eliminarUsuario(usuario.id)">🗑️ Eliminar</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ➕ Botón Agregar -->
+    <div class="acciones">
+      <button class="agregar" (click)="abrirModal()">➕ Agregar Usuario</button>
+    </div>
+  </div>
+</div>
+
+<!-- 🪟 Modal -->
+<div class="modal" *ngIf="mostrarModal">
+  <div class="modal-content">
+    <h2>{{ esEdicion() ? 'Editar Usuario' : 'Agregar Usuario' }}</h2>
+
+    <form>
+      <label>Nombre:
+        <input type="text" [(ngModel)]="nuevoUsuario.nombre" name="nombre" />
+      </label>
+
+      <label>Apellido:
+        <input type="text" [(ngModel)]="nuevoUsuario.apellido" name="apellido" />
+      </label>
+
+      <label>Correo:
+        <input type="email" [(ngModel)]="nuevoUsuario.correo" name="correo" />
+      </label>
+
+      <label>Contraseña:
+        <input type="password" [(ngModel)]="nuevoUsuario.password" name="password" />
+      </label>
+
+      <label>Rol:
+        <select [(ngModel)]="nuevoUsuario.rol" name="rol">
+          <option value="ADMIN">ADMIN</option>
+          <option value="MESERO">MESERO</option>
+          <option value="COCINERO">COCINERO</option>
+        </select>
+      </label>
+
+      <div class="botones-form">
+        <button type="button" (click)="guardarUsuario()">💾 Guardar</button>
+        <button type="button" (click)="cerrarModal()">❌ Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="login-container">
+  <div class="overlay"></div>
+
+  <div class="content">
+    <h1>Iniciar Sesión</h1>
+    <p>Bienvenido a RestaurApp</p>
+
+    <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+      <input
+        type="email"
+        name="correo"
+        placeholder="Correo"
+        required
+        [(ngModel)]="correo"
+      />
+      <input
+        type="password"
+        name="password"
+        placeholder="Contraseña"
+        required
+        [(ngModel)]="password"
+      />
+      <button type="submit" [disabled]="loginForm.invalid">Ingresar</button>
+    </form>
+
+    <div class="extra">
+      <a href="#">¿Olvidaste tu contraseña?</a>
+    </div>
+
+    <p *ngIf="errorMsg" class="error">{{ errorMsg }}</p>
+  </div>
+</div>

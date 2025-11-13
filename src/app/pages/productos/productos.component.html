@@ -1,0 +1,77 @@
+<div class="productos-container">
+  <div class="overlay"></div>
+  <div class="content">
+    <h1>📦 Gestión de Productos</h1>
+    <p>Administra, busca y organiza los productos.</p>
+
+    <!-- 🔍 Buscador -->
+    <div class="busqueda">
+      <input type="text" [(ngModel)]="filtro" placeholder="Buscar por nombre o descripción..." />
+      <input type="number" [(ngModel)]="idBusqueda" placeholder="Buscar por ID" />
+      <button (click)="buscarPorId()">Buscar</button>
+    </div>
+
+    <!-- 🧾 Tabla -->
+    <div class="tabla-container">
+      <table>
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Precio</th>
+          <th>Disponible</th>
+          <th>Tipo</th>
+          <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let producto of productosFiltrados">
+          <td>{{ producto.id }}</td>
+          <td>{{ producto.nombre }}</td>
+          <td>{{ producto.descripcion }}</td>
+          <td>{{ producto.precio | currency:'COP':'symbol-narrow' }}</td>
+          <td>
+              <span [class.disponible]="producto.disponible" [class.no-disponible]="!producto.disponible">
+                {{ producto.disponible ? 'Sí' : 'No' }}
+              </span>
+          </td>
+          <td>{{ producto.tipo }}</td>
+          <td>
+            <button class="editar" (click)="abrirFormulario(true, producto)">✏️</button>
+            <button class="eliminar" (click)="eliminarProducto(producto.id)">🗑️</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ⚙️ Botón Agregar -->
+    <div class="acciones">
+      <button class="agregar" (click)="abrirFormulario(false)">➕ Agregar Producto</button>
+    </div>
+
+    <!-- 🧾 Modal -->
+    <div class="modal" *ngIf="mostrarFormulario">
+      <div class="modal-content">
+        <h2>{{ modoEdicion ? '✏️ Editar Producto' : '➕ Nuevo Producto' }}</h2>
+
+        <form (ngSubmit)="guardarProducto()">
+          <input type="text" [(ngModel)]="nuevoProducto.nombre" name="nombre" placeholder="Nombre" required />
+          <input type="text" [(ngModel)]="nuevoProducto.descripcion" name="descripcion" placeholder="Descripción" required />
+          <input type="number" [(ngModel)]="nuevoProducto.precio" name="precio" placeholder="Precio" required />
+          <input type="text" [(ngModel)]="nuevoProducto.tipo" name="tipo" placeholder="Tipo" required />
+          <label>
+            Disponible:
+            <input type="checkbox" [(ngModel)]="nuevoProducto.disponible" name="disponible" />
+          </label>
+
+          <div class="botones-form">
+            <button type="submit">{{ modoEdicion ? 'Actualizar' : 'Agregar' }}</button>
+            <button type="button" (click)="cerrarFormulario()">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

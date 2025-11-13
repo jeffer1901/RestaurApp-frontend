@@ -1,0 +1,290 @@
+.pedidos-container {
+  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(135deg, rgba(20, 20, 20, 0.9), rgba(40, 40, 40, 0.9));
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 60px 20px;
+}
+
+/* Capa de fondo difuminado */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: url('../../../assets/fondo-restaurante.jpg') center/cover no-repeat;
+  filter: blur(6px) brightness(0.4);
+  z-index: 0;
+}
+
+/* Contenido principal */
+.content {
+  position: relative;
+  z-index: 1;
+  width: 90%;
+  max-width: 1100px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+p {
+  text-align: center;
+  color: #ccc;
+  margin-bottom: 25px;
+}
+
+/* 🔍 Buscador */
+.busqueda {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.busqueda input {
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: none;
+  width: 220px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+.busqueda button {
+  background: #ff7043;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.busqueda button:hover {
+  background: #ff8a65;
+}
+
+/* 🧾 Tabla de pedidos */
+.tabla-container {
+  overflow-x: auto;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  color: #fff;
+  text-align: center;
+}
+
+th {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 12px;
+  font-weight: 600;
+}
+
+td {
+  padding: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Estados de productos/pedidos */
+.disponible {
+  color: #ff7043;
+  font-weight: bold;
+}
+
+.no-disponible {
+  color: #ff5252;
+  font-weight: bold;
+}
+
+/* ⚙️ Botones de acción */
+.acciones {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 15px;
+}
+
+.agregar,
+.editar,
+.eliminar,
+.seleccionar {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.agregar {
+  background: #ff7043;
+  color: #fff;
+}
+
+.editar {
+  background: #ffc107;
+  color: #222;
+}
+
+.eliminar {
+  background: #e74c3c;
+  color: #fff;
+}
+
+.seleccionar {
+  background: #4caf50;
+  color: #fff;
+}
+
+.agregar:hover,
+.editar:hover,
+.eliminar:hover,
+.seleccionar:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+/* 🧾 Modal de pedido */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 200;
+}
+
+.modal-content {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 30px;
+  width: 90%;
+  max-width: 420px;
+  color: #fff;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content h2 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+.modal-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="number"],
+.modal-content select {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  color: #fff;
+}
+
+.modal-content label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #ccc;
+}
+
+/* Botones del formulario */
+.botones-form {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 15px;
+}
+
+.botones-form button {
+  background: #ff7043;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.botones-form button[type="button"] {
+  background: #ff5252;
+}
+
+.botones-form button:hover {
+  background: #ff7043;
+}
+
+.botones-form button[type="button"]:hover {
+  background: #e74c3c;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.input-cantidad {
+  width: 70px;
+  text-align: center;
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+.input-cantidad:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Botón principal */
+.acciones {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.acciones .seleccionar {
+  background: #ff7043;
+  color: #fff;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.acciones .seleccionar:hover {
+  background: #ff7043;
+  transform: scale(1.05);
+}

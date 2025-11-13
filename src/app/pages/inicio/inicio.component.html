@@ -1,0 +1,17 @@
+<div class="inicio-container">
+  <div class="overlay"></div>
+
+  <div class="content">
+    <h1>Bienvenido, {{ nombre() }}</h1>
+    <p>Rol: {{ rol() }}</p>
+
+    <div class="buttons">
+      <button routerLink="/productos">🍽️ Productos</button>
+      <button routerLink="/mesas">📋 Mesas</button>
+      <button routerLink="/mesasPedidos">🧾 Pedidos</button>
+      <button routerLink="/cocina">🧾 Cocina</button>
+      <button routerLink="/usuarios">👥 Usuarios</button>
+      <button (click)="cerrarSesion()">🔐 Cerrar Sesión</button>
+    </div>
+  </div>
+</div>

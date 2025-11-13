@@ -1,0 +1,57 @@
+<div class="cocina-container">
+  <div class="overlay">
+    <h1 class="titulo">Pedidos Cocina</h1>
+    <h2 class="subtitulo">Filtra por estado</h2>
+
+    <!-- Filtro con botón de buscar y reset -->
+    <div class="filtro-container" style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+      <input
+        type="text"
+        placeholder="Buscar por estado..."
+        [(ngModel)]="filtroEstado"
+      />
+      <button (click)="filtrarPedidos()" class="btn-actualizar">
+        Buscar
+      </button>
+      <button (click)="resetFiltro()" class="btn-actualizar">
+        Mostrar todos
+      </button>
+    </div>
+
+    <!-- Lista de pedidos -->
+    <div *ngIf="pedidosFiltrados.length > 0; else noPedidos" class="pedidos-lista">
+      <div *ngFor="let pedido of pedidosFiltrados" class="pedido-card">
+        <div class="pedido-info">
+          <p><strong>ID:</strong> {{ pedido.id }}</p>
+          <p><strong>Mesa:</strong> {{ pedido.mesa?.id }}</p>
+          <p><strong>Estado:</strong> {{ pedido.estado }}</p>
+          <p><strong>Total:</strong> ${{ pedido.total }}</p>
+        </div>
+
+        <div class="pedido-acciones">
+          <select [(ngModel)]="pedido.nuevoEstado">s
+            <option value="">-- Cambiar estado --</option>
+            <option value="REGISTRADO">Registrado</option>
+            <option value="EN_PREPARACION">En preparación</option>
+            <option value="COMPLETADO">Listo</option>
+            <option value="ENTREGADO">Entregado</option>
+          </select>
+
+          <button
+            class="btn-actualizar"
+            (click)="actualizarEstado(pedido, pedido.nuevoEstado)"
+          >
+            Actualizar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mensaje cuando no hay pedidos -->
+    <ng-template #noPedidos>
+      <p style="color: #fff; text-align: center; margin-top: 2rem;">
+        No hay pedidos para mostrar.
+      </p>
+    </ng-template>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+<div class="pedidos-container" *ngIf="mesa && usuario">
+  <div class="overlay"></div>
+
+  <div class="content">
+    <h1>Pedido Mesa {{ mesa?.id }}</h1>
+    <p>Mesero: {{ usuario?.nombre }}</p>
+
+    <!-- 🧾 Productos disponibles -->
+    <div class="tabla-container">
+      <table>
+        <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Precio</th>
+          <th>Cantidad</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let producto of productos">
+          <td>{{ producto?.nombre }}</td>
+          <td>{{ producto?.precio | currency:'USD':'symbol' }}</td>
+          <td>
+            <input
+              type="number"
+              min="0"
+              [(ngModel)]="producto.cantidadSeleccionada"
+              class="input-cantidad"
+            />
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 🛒 Botón principal -->
+    <div class="acciones">
+      <button class="seleccionar" (click)="guardarPedido()">
+        Hacer Pedido
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Mensaje si no hay datos -->
+<div *ngIf="!mesa || !usuario" class="content">
+  <p>No se recibió información de la mesa o del mesero.</p>
+</div>

@@ -1,0 +1,55 @@
+<div class="productos-container">
+  <div class="overlay"></div>
+
+  <div class="content">
+    <h1>Mesas</h1>
+    <p>Administra las mesas del restaurante</p>
+
+    <!-- 🔍 Buscador -->
+    <div class="busqueda">
+      <input
+        type="text"
+        placeholder="Buscar por ID, estado o mesero"
+        [(ngModel)]="filtro"
+        (input)="buscarMesas()"
+      />
+    </div>
+
+    <!-- 🧾 Tabla de mesas -->
+    <div class="tabla-container">
+      <table>
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Estado</th>
+          <th>Mesero</th>
+          <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let mesa of mesas">
+          <td>{{ mesa.id }}</td>
+          <td [ngClass]="mesa.estado === 'LIBRE' ? 'libre' : 'ocupada'">{{ mesa.estado }}</td>
+          <td>{{ mesa.mesero?.nombre || '-' }}</td> <!-- ✅ Corregido -->
+          <td class="acciones-fila">
+            <button
+              class="editar"
+              (click)="irAPedido(mesa)"
+              [disabled]="mesa.estado === 'OCUPADA'"
+            >
+              Seleccionar
+            </button>
+            <button
+              class="eliminar"
+              (click)="liberarMesa(mesa)"
+              [disabled]="mesa.estado === 'LIBRE'"
+            >
+              Liberar
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
