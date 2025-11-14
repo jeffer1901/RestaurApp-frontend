@@ -48,11 +48,24 @@ export class LoginComponent {
             rol: response.rol,
             id: response.id
           };
-          localStorage.setItem('user', JSON.stringify(response));
+
+          localStorage.setItem('user', JSON.stringify(userData));
           console.log('💾 Usuario guardado en localStorage');
 
-          // ✅ Redirige al inicio (ruta protegida)
-          this.router.navigate(['/inicio']);
+          // 🔥 Redirigir según el rol
+          if (response.rol === 'ADMIN') {
+            this.router.navigate(['/inicio']);
+          }
+          else if (response.rol === 'MESERO') {
+            this.router.navigate(['/mesasPedidos']);
+          }
+          else if (response.rol === 'COCINERO') {
+            this.router.navigate(['/cocina']);
+          }
+          else {
+            console.warn('⚠️ Rol desconocido:', response.rol);
+          }
+
         } else {
           console.error('⚠️ Respuesta sin token o rol');
         }
