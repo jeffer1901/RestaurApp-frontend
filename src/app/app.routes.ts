@@ -18,11 +18,10 @@ export const routes: Routes = [
   { path: 'inicio', component: InicioComponent,canActivate: [adminGuard] },
   { path: 'mesas', component: MesasComponent,canActivate: [adminGuard] },
   { path: 'productos', component: ProductosComponent,canActivate: [adminGuard] },
-  { path: 'cocina', component: CocinaComponent, canActivate: [adminGuard]},
-  { path: 'pedidos', component: PedidosComponent,canActivate: [adminGuard]},
+  { path: 'cocina', component: CocinaComponent},
+  { path: 'pedidos', component: PedidosComponent},
   { path: 'usuarios', component: UsuariosComponent,canActivate: [adminGuard] },
-  { path: 'mesasPedidos', component: MesasPedidoComponent,canActivate: [adminGuard]},
-  { path: 'cocina', component: CocinaComponent, canActivate: [cocineroGuard] },
-  { path: 'pedidos', component: PedidosComponent, canActivate: [meseroGuard] },
+  { path: 'mesasPedidos', component: MesasPedidoComponent},
+
 
 ];
