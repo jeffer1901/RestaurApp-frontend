@@ -57,9 +57,11 @@ export class LoginComponent {
             this.router.navigate(['/inicio']);
           }
           else if (response.rol === 'MESERO') {
+            console.log('Redirigiendo a /mesasPedidos');
             this.router.navigate(['/mesasPedidos']);
           }
           else if (response.rol === 'COCINERO') {
+            console.log('Redirigiendo a cocina');
             this.router.navigate(['/cocina']);
           }
           else {
