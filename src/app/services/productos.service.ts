@@ -7,7 +7,7 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class ProductosService {
-  private apiUrl: string = `${environment.apiUrl}/productos`;
+  private apiUrl: string = `http://4.155.250.187:8080/productos`;
 
   constructor(private http: HttpClient) {}
 

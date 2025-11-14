@@ -7,7 +7,7 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class MesasService {
-  private apiUrl: string = `${environment.apiUrl}/mesas`;
+  private apiUrl: string = `http://4.155.250.187:8080/mesas`;
 
   constructor(private http: HttpClient) {}
 
