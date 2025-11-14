@@ -38,7 +38,7 @@ export class LoginComponent {
     const datos = { correo: this.correo, password: this.password };
     console.log('📤 Enviando datos:', datos);
 
-    this.http.post<any>('http://localhost:8080/auth/login', datos).subscribe({
+    this.http.post<any>('http://4.155.250.187:8080/auth/login', datos).subscribe({
       next: (response) => {
         console.log('✅ Login exitoso', response);
 
