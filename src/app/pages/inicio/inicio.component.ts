@@ -43,7 +43,7 @@ export class InicioComponent implements OnInit {
       Authorization: `Bearer ${token}`
     });
 
-    this.http.get<any>(`http://localhost:8080/usuarios/${userId}`, { headers })
+    this.http.get<any>(`http://4.155.250.187:8080/usuarios/${userId}`, { headers })
       .subscribe({
         next: (data) => {
           console.log('📩 Datos del usuario:', data);
